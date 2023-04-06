@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 const Navbar = (props) => {
     const [toggle,setToggle]=useState(false);
   return (
-    <div className="max-w-[1240px] mx-auto px-4 py-4 sticky top-0 bg-white">
+    <div className="max-w-[1240px] mx-auto px-4 py-4 sticky top-0 bg-white z-40">
       <div className=" flex justify-between items-center relative">
         
         <div>
@@ -38,7 +38,7 @@ const Navbar = (props) => {
             </button>
           </div>
         </div>
-       <div className={`duration-1000 absolute top-[3rem]  backdrop-blur-md h-screen w-full flex flex-col items-center space-y-14 ${toggle?"left-0":"left-[-100%]"} md:left-[-100%] md:hidden z-50`}>
+       <div className={`duration-1000 absolute top-[3rem]  backdrop-blur-md h-screen w-full flex flex-col items-center space-y-14 ${toggle?"left-0":"left-[-300%]"} md:left-[-300%] md:hidden z-50`}>
         <Link to='/'>
         <button className=" text-white font-medium px-5 py-2 w-[6rem] shadow rounded-full mt-14">
           Logout

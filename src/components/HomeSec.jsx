@@ -55,6 +55,8 @@ const HeroSec = () => {
           </div>
         </div>
       </div>
+
+
     </div>
   );
 };

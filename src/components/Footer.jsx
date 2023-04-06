@@ -22,7 +22,7 @@ const Footer = () => {
             <li>Do not sell or share my personal information</li>
             </div>
 
-            <div className='text-[15px] text-center'>
+            <div className='text-[15px] text-center md:text-left'>
             <p className='pb-5'>This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.</p>
             <p> © 2023 Food Fly Technologies Inc.</p>
             </div>

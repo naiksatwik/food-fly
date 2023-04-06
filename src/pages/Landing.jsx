@@ -1,5 +1,6 @@
 import React from "react";
 import logo from  '../assets/FoodFly_logo.png';
+import {Link} from 'react-router-dom'
 const Landing = () => {
   return (
     <div className="w-full  h-[100vh]">
@@ -10,8 +11,12 @@ const Landing = () => {
             <img src={logo} alt=""  className="w-[9rem] "/>
             </div>
             <div className="space-x-8">
-                <button className="bg-white px-4 py-2 font-medium rounded-full ">Login</button>
-                <button className="blackBtn">Sign in</button>
+               <Link to='/register'>
+               <button className="bg-white px-4 py-2 font-medium rounded-full shadow-md ">Login</button>
+               </Link> 
+               <Link to='/sigin'>
+               <button className="blackBtn">Sign in</button>
+               </Link>
             </div>
 
           </div>

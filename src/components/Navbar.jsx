@@ -32,10 +32,12 @@ const Navbar = (props) => {
             </Link>
 
            <Link to='/products'><button className="blackBtn">Products</button></Link> 
-            <button className="flex blackBtn justify-evenly w-[5rem]">
-             <p>{props.count}</p>
+           <Link to='/cart'>
+           <button className="flex blackBtn justify-evenly w-[5rem]">
               Cart
             </button>
+           </Link>
+
           </div>
         </div>
        <div className={`duration-1000 absolute top-[3rem]  backdrop-blur-md h-screen w-full flex flex-col items-center space-y-14 ${toggle?"left-0":"left-[-300%]"} md:left-[-300%] md:hidden z-50`}>
@@ -47,9 +49,8 @@ const Navbar = (props) => {
         <Link to='/products'>
         <button className="blackBtn w-[6rem]">Products</button>
         </Link>
-        <Link>
+        <Link to='/cart'>
         <button className="flex blackBtn justify-evenly w-[6rem]">
-          <p>{props.count}</p>
           Cart
         </button>
         </Link>

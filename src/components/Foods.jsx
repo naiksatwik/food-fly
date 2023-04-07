@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {data} from '../data/data'
 import FoodCards from "./FoodCards";
 const Foods = (props) => {
-    // console.log(data)
+    console.log(data)
     const[food,setFoods]=useState(data);
   
 
@@ -75,8 +75,8 @@ const Foods = (props) => {
        
        <div className="px-4 py-10 grid grid-flow-row sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 justify-items-center  ">
          {
-            food.map((item,index)=>{
-             return   <FoodCards name={item.name} price={item.price} image={item.image} key={index} Add={props.Add} count={props.count}/>
+            food.map((item)=>{
+             return   <FoodCards name={item.name} price={item.price} image={item.image} id={item.id} Add={props.Add} count={props.count}/>
             })
          }
        </div>

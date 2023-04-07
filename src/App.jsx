@@ -6,10 +6,14 @@ import Register from './pages/Register';
 import Login from './pages/Register';
 import Products from './pages/Products';
 import SignIn from './pages/SignIn'
+import FoodContext from './context/FoodContext';
+import Cart from './pages/Cart'
+import FoodContextProvider from './context/FoodContext';
 
 const App = () => {
   return (
     <>
+    <FoodContextProvider>
       <Router>
         <Routes>
           <Route path='/' Component={Landing}/>
@@ -18,8 +22,10 @@ const App = () => {
           <Route path='/sigin' Component={SignIn}/>
           <Route path='/home' Component={Home}/>
           <Route path='/products' Component={Products}/>
+          <Route path='/cart' Component={Cart}/>
         </Routes>
       </Router>
+      </FoodContextProvider>
     </>
   )
 }

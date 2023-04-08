@@ -12,15 +12,20 @@ const FoodContextProvider = (props) => {
 
     const [cartItem, setCartItem] = useState(getDefaultCart());
 
-    // const totalAmount=()=>{
-    //     for(const item in cartItem){
-    //         console.log(cartItem[item])
-    //         if(cartItem[item] > 0)
-    //         {
-                
-    //         }
-    //     }
-    // }
+    const totalAmount=()=>{
+      let totalCost=0;
+      let num=0
+      for( let item in cartItem){
+        if(cartItem[item] > 0){
+          console.log(item);
+          let currentProduct=data[num]
+
+          totalCost += (cartItem[item] * currentProduct.price);
+        }
+        num++;
+      }
+      return totalCost;
+    }
     
     const addToCart = (itemId) => {
         setCartItem((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
@@ -34,7 +39,7 @@ const FoodContextProvider = (props) => {
 
 
     console.log(cartItem)
-    const ContextValue = { cartItem, addToCart, removeFromCart };
+    const ContextValue = { cartItem, addToCart, removeFromCart,totalAmount};
   return (
     <FoodContext.Provider value={ContextValue}>
       {props.children}

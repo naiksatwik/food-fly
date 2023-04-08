@@ -5,6 +5,7 @@ import food2 from "../assets/Burger.jpg";
 import food3 from "../assets/butterChicken.jpg";
 
 const HeroSec = () => {
+
   return (
     <div className="max-w-[1240px] mx-auto  px-4 -z-50 ">
       <div className="max-h-[500px] relative px-4">
@@ -28,30 +29,21 @@ const HeroSec = () => {
       <div className="py-10 px-4  grid grid-flow-row sm:grid-cols-2 md:grid-cols-3 gap-10 ">
         <div className="relative">
           <img src={food1} alt="" className="brightness-50 rounded-xl w-full h-[12rem] object-cover" />
-          <div className="absolute top-0  font-semibold px-8 py-5 flex w-full h-full flex-col justify-between">
-            <h1 className="text-xl text-white">Chicken Rool</h1>
-            <button className="bg-white  w-[6rem] text-sm py-1 rounded-full ">
-              Add to cart
-            </button>
+          <div className="absolute top-0  font-semibold px-8 py-5 flex w-full h-full items-center justify-center">
+            <h1 className="text-2xl text-white">Chicken Rool</h1>
           </div>
         </div>
         <div className="relative">
-          <img src={food2} alt="" className="brightness-50 rounded-xl w-full h-[12rem] object-cover" />
-          <div className="absolute top-0  font-semibold px-8 py-5 flex w-full h-full flex-col justify-between">
-            <h1 className="text-xl text-white">Burger</h1>
-            <button className="bg-white  w-[6rem] text-sm py-1 rounded-full">
-              Add to cart
-            </button>
+          <img src={food2} alt="" className="brightness-50 rounded-xl w-full h-[12rem] object-cover " />
+          <div className="absolute top-0  font-semibold px-8 py-5 flex w-full h-full items-center justify-center ">
+            <h1 className="text-2xl text-white">Burger</h1>
           </div>
         </div>
 
         <div className="relative">
           <img src={food3} alt="" className="brightness-50 rounded-xl object-center w-full h-[12rem]" />
-          <div className="absolute top-0  font-semibold px-8 py-5 flex w-full h-full flex-col justify-between">
-            <h1 className="text-xl text-white">Butter Chicken</h1>
-            <button className="bg-white  w-[6rem] text-sm py-1 rounded-full">
-              Add to cart
-            </button>
+          <div className="absolute top-0  font-semibold px-8 py-5 flex w-full h-full items-center justify-center">
+            <h1 className="text-2xl text-white">Butter Chicken</h1>
           </div>
         </div>
       </div>

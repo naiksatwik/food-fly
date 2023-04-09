@@ -24,12 +24,13 @@ const Form = () => {
       }),
     })
       .then((res) => {
-        res.json().then((data) => {
-          console.log(data.error);
-          if (data.error === "User Exists") {
+        res.json().then((info) => {
+          console.log(info.error);
+          if (info.error === "User Exists") {
             document.getElementById("track").innerHTML =
               "This Email is already registered";
           } else {
+            window.localStorage.setItem('token',data)
             Navigate("/home");
           }
         });

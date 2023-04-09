@@ -20,7 +20,33 @@ const SignIn = () => {
 
   const onSubmit = (data) => {
     console.log(data);
-   Navigator('/home')
+
+    fetch('http://localhost:5000/sign-in',{
+      method:"POST",
+      crossDomain:true,
+      headers:{
+        'Content-Type':"application/json",
+        Accept:"application/json",
+        "Access-Control-Allow-Origin":"*"
+      },
+      body:JSON.stringify({
+        email:data.email,
+        password:data.password,
+      })
+    }).then((info)=>{
+      console.log(info)
+      info.json().then((info)=>{
+        if(info.error === 'Email Not Exist'){
+          document.getElementById('track1').innerHTML="Above email is not registered";
+       }else if(info.error === "invalid password"){
+         document.getElementById('track2').innerHTML="Password is not correct !";
+       }else{
+        window.localStorage.setItem('token',data)
+         Navigator('/home')
+       }
+      })
+
+    })
   };
 
   return (
@@ -40,7 +66,7 @@ const SignIn = () => {
             className="border-2 py-2 px-10 rounded-full mt-6"
             {...register("email")}
           />
-          <p className="text-red-500 text-sm text-left px-3 pt-3">
+          <p className="text-red-500 text-sm text-left px-3 pt-3" id="track1">
             {errors.email?.message}
           </p>
           <input
@@ -49,7 +75,7 @@ const SignIn = () => {
             className="border-2 py-2 px-10 rounded-full mt-6"
             {...register("password")}
           />
-          <p className="text-red-500 text-sm text-left px-3 pt-3">
+          <p className="text-red-500 text-sm text-left px-3 pt-3" id="track2">
             {errors.password?.message}
           </p>
          

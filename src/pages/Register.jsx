@@ -8,7 +8,7 @@ import { FoodContext } from "../context/FoodContext";
 
 const Form = () => {
   const Navigate = useNavigate();
-  const {setUserName}= useContext(FoodContext);
+  const { setUserName } = useContext(FoodContext);
   let mess = "enter";
   const onSubmit = (data) => {
     console.log(data);
@@ -33,7 +33,7 @@ const Form = () => {
             document.getElementById("track").innerHTML =
               "This Email is already registered";
           } else {
-            setUserName(data.name)
+            setUserName(data.name);
             Navigate("/home");
           }
         });

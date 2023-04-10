@@ -3,12 +3,12 @@ import logo from "../assets/logo.png";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FoodContext } from "../context/FoodContext";
 const SignIn = () => {
-  const {setUserName}= useContext(FoodContext);
+  const { setUserName } = useContext(FoodContext);
 
-  const Navigator=useNavigate();
+  const Navigator = useNavigate();
   const schema = yup.object({
     email: yup.string().email().required(),
     password: yup.string().min(4).max(20).required(),
@@ -24,33 +24,34 @@ const SignIn = () => {
   const onSubmit = (data) => {
     console.log(data);
 
-    fetch('http://localhost:5000/sign-in',{
-      method:"POST",
-      crossDomain:true,
-      headers:{
-        'Content-Type':"application/json",
-        Accept:"application/json",
-        "Access-Control-Allow-Origin":"*"
+    fetch("http://localhost:5000/sign-in", {
+      method: "POST",
+      crossDomain: true,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "Access-Control-Allow-Origin": "*",
       },
-      body:JSON.stringify({
-        email:data.email,
-        password:data.password,
-      })
-    }).then((info)=>{
-      console.log(info)
-      info.json().then((info)=>{
-        if(info.error === 'Email Not Exist'){
-          document.getElementById('track1').innerHTML="Above email is not registered";
-       }else if(info.error === "invalid password"){
-         document.getElementById('track2').innerHTML="Password is not correct !";
-       }else{
-        setUserName(info.profile)
-        
-         Navigator('/home')
-       }
-      })
+      body: JSON.stringify({
+        email: data.email,
+        password: data.password,
+      }),
+    }).then((info) => {
+      console.log(info);
+      info.json().then((info) => {
+        if (info.error === "Email Not Exist") {
+          document.getElementById("track1").innerHTML =
+            "Above email is not registered";
+        } else if (info.error === "invalid password") {
+          document.getElementById("track2").innerHTML =
+            "Password is not correct !";
+        } else {
+          setUserName(info.profile);
 
-    })
+          Navigator("/home");
+        }
+      });
+    });
   };
 
   return (
@@ -63,7 +64,6 @@ const SignIn = () => {
           className=" flex flex-col px-16 py-16 rounded-2xl shadow-2xl shadow-purple-400 "
           onSubmit={handleSubmit(onSubmit)}
         >
-         
           <input
             type="text"
             placeholder="Your Email"
@@ -82,13 +82,12 @@ const SignIn = () => {
           <p className="text-red-500 text-sm text-left px-3 pt-3" id="track2">
             {errors.password?.message}
           </p>
-         
+
           <div className="w-full flex justify-between">
-          
-              <input
-                type="submit"
-                className="bg-purple-400 px-5 py-2 rounded-full mt-10"
-              />
+            <input
+              type="submit"
+              className="bg-purple-400 px-5 py-2 rounded-full mt-10"
+            />
 
             <Link to="/">
               <button className="bg-purple-400 px-7 py-2 rounded-full mt-10">

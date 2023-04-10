@@ -5,14 +5,14 @@ import {
   AiOutlineShoppingCart,
 } from "react-icons/ai";
 
-import { FaUserCheck,FaUserPlus} from "react-icons/fa";
+import { FaUserCheck, FaUserPlus } from "react-icons/fa";
 import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import { FoodContext } from "../context/FoodContext";
 const Navbar = (props) => {
-  const { userName, setUserName,lengthOfOrder } = useContext(FoodContext);
+  const { userName, setUserName, lengthOfOrder } = useContext(FoodContext);
   const [toggle, setToggle] = useState(false);
-  let noCartItem=lengthOfOrder();
+  let noCartItem = lengthOfOrder();
   const logOut = () => {
     setUserName("");
   };
@@ -26,15 +26,18 @@ const Navbar = (props) => {
         </div>
         <div className="hidden md:block">
           <div className=" flex md:items-center space-x-2">
-            {
-              (userName === '')?<FaUserPlus size={25} className=" text-red-500" /> :<FaUserCheck size={25} className=" text-green-500" />
-            }
+            {userName === "" ? (
+              <FaUserPlus size={25} className=" text-red-500" />
+            ) : (
+              <FaUserCheck size={25} className=" text-green-500" />
+            )}
             <div className="text-xl font-semibold">
-              {
-              userName===''? <h1>User not Found</h1> : <h1>Hi,{userName}</h1>
-            }
-       </div>
-           
+              {userName === "" ? (
+                <h1>User not Found</h1>
+              ) : (
+                <h1>Hi, {userName}</h1>
+              )}
+            </div>
           </div>
         </div>
 
@@ -67,13 +70,23 @@ const Navbar = (props) => {
             toggle ? "left-0" : "left-[-300%]"
           } md:left-[-300%] md:hidden z-50`}
         >
-          <div className=" flex items-center space-x-2 mt-10 justify-start">
-            <FaUserCheck size={25} className="text-green-500" />
-            <h1 className="text-xl font-bold  text-black">Hi,{userName}</h1>
+          <div className=" flex md:items-center space-x-2 mt-10">
+            {userName === "" ? (
+              <FaUserPlus size={25} className=" text-red-500" />
+            ) : (
+              <FaUserCheck size={25} className=" text-green-500" />
+            )}
+            <div className="text-xl font-semibold">
+              {userName === "" ? (
+                <h1>User not Found</h1>
+              ) : (
+                <h1>Hi, {userName}</h1>
+              )}
+            </div>
           </div>
           <Link to="/sigin">
             <button
-              className=" text-white font-medium px-5 py-2 w-[6rem] shadow rounded-full mt-14"
+              className="  font-medium px-5 py-2 w-[6rem] shadow rounded-full mt-14"
               onClick={() => {
                 logOut();
               }}

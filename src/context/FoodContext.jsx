@@ -26,6 +26,15 @@ const FoodContextProvider = (props) => {
       }
       return totalCost;
     }
+
+    const lengthOfOrder=()=>{
+      let total=0;
+         for(let item in cartItem){
+              total+=cartItem[item];
+         }
+
+         return total;
+    }
     
     const addToCart = (itemId) => {
         setCartItem((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
@@ -39,7 +48,7 @@ const FoodContextProvider = (props) => {
 
 
     console.log(cartItem)
-    const ContextValue = { cartItem, addToCart, removeFromCart,totalAmount,userName,setUserName};
+    const ContextValue = { cartItem, addToCart, removeFromCart,totalAmount,userName,setUserName,lengthOfOrder};
   return (
     <FoodContext.Provider value={ContextValue}>
       {props.children}

@@ -11,7 +11,7 @@ const FoodContextProvider = (props) => {
     };
 
     const [cartItem, setCartItem] = useState(getDefaultCart());
-
+    const [userName,setUserName]=useState('');
     const totalAmount=()=>{
       let totalCost=0;
       let num=0
@@ -39,7 +39,7 @@ const FoodContextProvider = (props) => {
 
 
     console.log(cartItem)
-    const ContextValue = { cartItem, addToCart, removeFromCart,totalAmount};
+    const ContextValue = { cartItem, addToCart, removeFromCart,totalAmount,userName,setUserName};
   return (
     <FoodContext.Provider value={ContextValue}>
       {props.children}

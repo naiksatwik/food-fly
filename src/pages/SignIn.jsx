@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import logo from "../assets/logo.png";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link,useNavigate } from "react-router-dom";
+import { FoodContext } from "../context/FoodContext";
 const SignIn = () => {
+  const {setUserName}= useContext(FoodContext);
+
   const Navigator=useNavigate();
   const schema = yup.object({
     email: yup.string().email().required(),
@@ -41,7 +44,8 @@ const SignIn = () => {
        }else if(info.error === "invalid password"){
          document.getElementById('track2').innerHTML="Password is not correct !";
        }else{
-        window.localStorage.setItem('token',data)
+        setUserName(info.profile)
+        
          Navigator('/home')
        }
       })

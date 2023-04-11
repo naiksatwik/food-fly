@@ -1,14 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import logo from "../assets/logo.png";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link, useNavigate } from "react-router-dom";
-import { FoodContext } from "../context/FoodContext";
+
 
 const Form = () => {
   const Navigate = useNavigate();
-  const { setUserName } = useContext(FoodContext);
   let mess = "enter";
   const onSubmit = (data) => {
     console.log(data);
@@ -33,7 +32,7 @@ const Form = () => {
             document.getElementById("track").innerHTML =
               "This Email is already registered";
           } else {
-            setUserName(data.name);
+          window.localStorage.setItem('userName',data.name)
             Navigate("/home");
           }
         });

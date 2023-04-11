@@ -6,14 +6,13 @@ import Register from "./pages/Register";
 import Login from "./pages/Register";
 import Products from "./pages/Products";
 import SignIn from "./pages/SignIn";
-import FoodContext from "./context/FoodContext";
+import Order from "./pages/Order";
 import Cart from "./pages/Cart";
-import FoodContextProvider from "./context/FoodContext";
-
+import { CartProvider } from "./context/CartContext";
 const App = () => {
   return (
     <>
-      <FoodContextProvider>
+       <CartProvider>
         <Router>
           <Routes>
             <Route path="/" Component={Landing} />
@@ -23,9 +22,10 @@ const App = () => {
             <Route path="/home" Component={Home} />
             <Route path="/products" Component={Products} />
             <Route path="/cart" Component={Cart} />
+            <Route path="/order" Component={Order} />
           </Routes>
         </Router>
-      </FoodContextProvider>
+        </CartProvider>
     </>
   );
 };

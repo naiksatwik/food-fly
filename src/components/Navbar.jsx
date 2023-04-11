@@ -8,14 +8,12 @@ import {
 import { FaUserCheck, FaUserPlus } from "react-icons/fa";
 import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
-import { FoodContext } from "../context/FoodContext";
 const Navbar = (props) => {
-  const { userName, setUserName, lengthOfOrder } = useContext(FoodContext);
   const [toggle, setToggle] = useState(false);
-  let noCartItem = lengthOfOrder(0);
-
+  let userName=window.localStorage.getItem('userName')
+  console.log(userName)
   const logOut = () => {
-    setUserName("");
+    localStorage.clear()
     window.location.href = "http://localhost:5173/sigin";
   };
   return (
@@ -28,13 +26,13 @@ const Navbar = (props) => {
         </div>
         <div className="hidden md:block">
           <div className=" flex md:items-center space-x-2">
-            {userName === "" ? (
+            {userName === null ? (
               <FaUserPlus size={25} className=" text-red-500" />
             ) : (
               <FaUserCheck size={25} className=" text-green-500" />
             )}
             <div className="text-xl font-semibold">
-              {userName === "" ? (
+              {userName === null? (
                 <h1>User not Found</h1>
               ) : (
                 <h1>Hi, {userName}</h1>
@@ -51,28 +49,44 @@ const Navbar = (props) => {
                 logOut();
               }}
             >
-              {userName === "" ? <p>login</p> : <p>Logout</p>}
+              {userName === null ? <p>login</p> : <p>Logout</p>}
             </button>
-
+            <Link to='/order'>
+               <button className="blackBtn">
+                Orders
+               </button>
+            </Link>
             <Link to="/products">
               <button className="blackBtn">Products</button>
             </Link>
             <Link to="/cart">
               <button className="flex blackBtn justify-evenly w-[5rem]">
-                <p>{noCartItem}</p>
+                <p>0</p>
                 Cart
               </button>
             </Link>
           </div>
         </div>
         <div
-          className={`duration-1000 absolute top-[3rem]  backdrop-blur-md h-screen w-full flex flex-col items-center space-y-14 ${
+          className={`duration-1000 absolute top-[3rem]  backdrop-blur-md h-screen w-screen flex flex-col items-center space-y-14 ${
             toggle ? "left-0" : "left-[-300%]"
           } md:left-[-300%] md:hidden z-50`}
         >
           <div className=" flex items-center space-x-2 mt-10 justify-start">
-            <FaUserCheck size={25} className="text-green-500" />
-            <h1 className="text-xl font-bold  text-black">Hi,{userName}</h1>
+          <div className=" flex md:items-center space-x-2">
+            {userName === null ? (
+              <FaUserPlus size={25} className=" text-red-500" />
+            ) : (
+              <FaUserCheck size={25} className=" text-green-500" />
+            )}
+            <div className="text-xl font-semibold">
+              {userName === null? (
+                <h1>User not Found</h1>
+              ) : (
+                <h1>Hi, {userName}</h1>
+              )}
+            </div>
+          </div>
           </div>
 
           <button
@@ -81,9 +95,13 @@ const Navbar = (props) => {
               logOut();
             }}
           >
-            {userName === "" ? <p>login</p> : <p>Logout</p>}
+            {userName === null ? <p>login</p> : <p>Logout</p>}
           </button>
-
+          <Link to='/order'>
+               <button className="blackBtn w-[6rem]">
+                Orders
+               </button>
+            </Link>
           <Link to="/products">
             <button className="blackBtn w-[6rem]">Products</button>
           </Link>

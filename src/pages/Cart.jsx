@@ -1,33 +1,48 @@
-import React, { useContext } from 'react'
-import Navbar from '../components/Navbar'
-import {data} from '../data/data'
-import { FoodContext } from '../context/FoodContext';
-import CartItem from '../components/CartItem'
+import React, { useContext } from "react";
+import Navbar from "../components/Navbar";
+import { MdAddShoppingCart } from "react-icons/md";
+
+import CartItem from "../components/CartItem";
+
+import { useCartContext } from "../context/CartContext";
 const Cart = () => {
-  const {cartItem,totalAmount} =useContext(FoodContext);
-  const totalPrice=totalAmount();
-  console.log(totalPrice)
+  const { cart, total_Item, totalCost } = useCartContext();
+  console.log("satwik", cart);
+  console.log("satwik", total_Item);
+
+  const totalCosts = totalCost();
+
   return (
-   <div>
-   <Navbar/>
     <div>
-      {
-        data.map(product=>{
-          if(cartItem[product.id] > 0){
-            return <CartItem data={product}/>
-          }
-        })
-      }
-    
-    {totalPrice > 0? <div className='max-w-[600px] mx-auto flex flex-col items-end '>
-     <h1 className=' text-2xl font-bold  pt-10'>Total: ₹{totalPrice}</h1>
-     <button className='mt-4 bg-black text-white px-4 py-2 rounded-full'>Buy Now</button>
-     </div> : <h1 className='text-4xl font-semibold text-center'>Cart is Empty</h1>}
+      <Navbar />
+      <div>
+        {cart.map((product) => {
+          return <CartItem data={product} />;
+        })}
 
+        {cart.length > 0 ? (
+          <div className="max-w-[600px] mx-auto flex flex-col items-end ">
+            <input
+              type="text"
+              placeholder="Add address"
+              className="border-2 border-black p-1 rounded-full mt-10 pl-6"
+            />
+            <h1 className=" text-2xl font-bold  px-10 pt-4 ">
+              Total: ₹{totalCosts}
+            </h1>
+            <button className="mt-4 bg-black text-white px-4 py-2 rounded-full mr-10">
+              Buy Now
+            </button>
+          </div>
+        ) : (
+          <div className="flex h-[80vh] w-full items-center justify-center space-x-4">
+            <h1 className="text-4xl  text-center ">Cart is Empty</h1>
+            <MdAddShoppingCart size={50} />
+          </div>
+        )}
+      </div>
     </div>
+  );
+};
 
-   </div>
-  )
-}
-
-export default Cart
+export default Cart;

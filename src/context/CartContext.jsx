@@ -47,11 +47,21 @@ const CartProvider=({children})=>{
 
         return total;
     }
+
+    const totalItem=()=>{
+        let  totalItem=0;
+        state.cart.map((item)=>{
+            totalItem+=item.noItem;
+        })
+
+        return totalItem;
+    }
+
     useEffect(()=>{
         localStorage.setItem('CartItem',JSON.stringify(state.cart))
     },[state.cart])
 
-    return <CartContext.Provider value={{...state,addItem,removeProduct,incrementProduct,decrementProduct,totalCost}}>{children}</CartContext.Provider>
+    return <CartContext.Provider value={{...state,addItem,removeProduct,incrementProduct,decrementProduct,totalCost,totalItem}}>{children}</CartContext.Provider>
 }
 
 

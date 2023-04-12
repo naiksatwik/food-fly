@@ -4,12 +4,15 @@ import {
   AiOutlineClose,
   AiOutlineShoppingCart,
 } from "react-icons/ai";
-
 import { FaUserCheck, FaUserPlus } from "react-icons/fa";
 import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
-const Navbar = (props) => {
+import { useCartContext } from "../context/CartContext";
+
+const Navbar = () => {
   const [toggle, setToggle] = useState(false);
+   const{ totalItem} = useCartContext();
+  const totalItems=totalItem()
   let userName=window.localStorage.getItem('userName')
   console.log(userName)
   const logOut = () => {
@@ -61,7 +64,7 @@ const Navbar = (props) => {
             </Link>
             <Link to="/cart">
               <button className="flex blackBtn justify-evenly w-[5rem]">
-                <p>0</p>
+                <p>{totalItems}</p>
                 Cart
               </button>
             </Link>
@@ -107,7 +110,8 @@ const Navbar = (props) => {
           </Link>
           <Link to="/cart">
             <button className="flex blackBtn justify-evenly w-[6rem]">
-              Cart
+            <p>{totalItems}</p>
+                Cart
             </button>
           </Link>
         </div>

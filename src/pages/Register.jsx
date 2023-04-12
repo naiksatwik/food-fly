@@ -5,7 +5,6 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link, useNavigate } from "react-router-dom";
 
-
 const Form = () => {
   const Navigate = useNavigate();
   let mess = "enter";
@@ -32,8 +31,9 @@ const Form = () => {
             document.getElementById("track").innerHTML =
               "This Email is already registered";
           } else {
-          window.localStorage.setItem('userName',data.name)
-            Navigate("/home");
+            window.localStorage.clear();
+            window.localStorage.setItem("userName", data.name);
+            window.location.href = "http://localhost:5173/home";
           }
         });
       })
@@ -78,7 +78,7 @@ const Form = () => {
             className={`border-2  py-2 px-10 rounded-full mt-6`}
             {...register("name")}
           />
-          <p className="text-red-500 text-sm text-left px-3 pt-3">
+          <p className="text-red-500 text-sm text-left px-3">
             {errors.name?.message}
           </p>
           <input
@@ -87,7 +87,7 @@ const Form = () => {
             className="border-2 py-2 px-10 rounded-full mt-6"
             {...register("email")}
           />
-          <p className="text-red-500 text-sm text-left px-3 pt-3" id="track">
+          <p className="text-red-500 text-sm text-left px-3 " id="track">
             {errors.email?.message}
           </p>
           <input
@@ -96,7 +96,7 @@ const Form = () => {
             className="border-2 py-2 px-10 rounded-full mt-6"
             {...register("password")}
           />
-          <p className="text-red-500 text-sm text-left px-3 pt-3">
+          <p className="text-red-500 text-sm text-left px-3 ">
             {errors.password?.message}
             {}
           </p>
@@ -106,17 +106,17 @@ const Form = () => {
             className="border-2 py-2 px-10 rounded-full mt-6"
             {...register("confirm_Password")}
           />
-          <p className="text-red-500 text-sm text-left px-3 pt-3">
+          <p className="text-red-500 text-sm text-left ">
             {errors.confirm_Password?.message}
           </p>
           <div className="w-full flex justify-between">
             <input
               type="submit"
-              className="bg-purple-400 px-5 py-2 rounded-full mt-10"
+              className="bg-purple-400 px-5 py-2 rounded-full mt-5"
             />
 
             <Link to="/">
-              <button className="bg-purple-400 px-7 py-2 rounded-full mt-10">
+              <button className="bg-purple-400 px-7 py-2 rounded-full mt-5">
                 Back
               </button>
             </Link>
@@ -129,13 +129,4 @@ const Form = () => {
 
 export default Form;
 
-/*
-  "dependencies": {
-    "@hookform/resolvers": "^3.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-hook-form": "^7.43.9",
-    "yup": "^1.0.2"
-  },
 
-*/

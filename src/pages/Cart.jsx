@@ -6,9 +6,7 @@ import CartItem from "../components/CartItem";
 
 import { useCartContext } from "../context/CartContext";
 const Cart = () => {
-  const { cart, total_Item, totalCost } = useCartContext();
-  console.log("satwik", cart);
-  console.log("satwik", total_Item);
+  const { cart,  totalCost ,totalItem} = useCartContext();
 
   const totalCosts = totalCost();
 

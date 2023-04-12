@@ -46,8 +46,9 @@ const SignIn = () => {
           document.getElementById("track2").innerHTML =
             "Password is not correct !";
         } else {
+          window.localStorage.clear()
           window.localStorage.setItem('userName',info.profile)
-          Navigator("/home");
+          window.location.href="http://localhost:5173/home"
         }
       });
     });
@@ -69,7 +70,7 @@ const SignIn = () => {
             className="border-2 py-2 px-10 rounded-full mt-6"
             {...register("email")}
           />
-          <p className="text-red-500 text-sm text-left px-3 pt-3" id="track1">
+          <p className="text-red-500 text-sm text-left px-3 " id="track1">
             {errors.email?.message}
           </p>
           <input
@@ -78,7 +79,7 @@ const SignIn = () => {
             className="border-2 py-2 px-10 rounded-full mt-6"
             {...register("password")}
           />
-          <p className="text-red-500 text-sm text-left px-3 pt-3" id="track2">
+          <p className="text-red-500 text-sm text-left px-3" id="track2">
             {errors.password?.message}
           </p>
 

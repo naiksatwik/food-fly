@@ -5,9 +5,10 @@ import { MdAddShoppingCart } from "react-icons/md";
 import CartItem from "../components/CartItem";
 
 import { useCartContext } from "../context/CartContext";
+import { Link } from "react-router-dom";
 const Cart = () => {
-  const { cart,  totalCost ,totalItem} = useCartContext();
-
+  const { cart, totalCost, totalItem } = useCartContext();
+  let userName = window.localStorage.getItem("userName");
   const totalCosts = totalCost();
 
   return (
@@ -28,9 +29,19 @@ const Cart = () => {
             <h1 className=" text-2xl font-bold  px-10 pt-4 ">
               Total: ₹{totalCosts}
             </h1>
-            <button className="mt-4 bg-black text-white px-4 py-2 rounded-full mr-10">
-              Buy Now
-            </button>
+            {userName == null ? (
+              <Link to="/sigin">
+                <button className="mt-4 bg-black text-white px-4 py-2 rounded-full mr-10">
+                  Login for Order
+                </button>
+              </Link>
+            ) : (
+              <Link to="/order">
+                <button className="mt-4 bg-black text-white px-4 py-2 rounded-full mr-10">
+                  place Order
+                </button>
+              </Link>
+            )}
           </div>
         ) : (
           <div className="flex h-[80vh] w-full items-center justify-center space-x-4">

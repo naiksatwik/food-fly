@@ -6,12 +6,13 @@ const CartReducer = (state,action) => {
 
    let alreadyPresent=state.cart.find((item)=> item.id == id)
 
-  let SinglePrice=data[id].price;
+  let SinglePrice=data[id-1].price;
+   console.log("Single price",SinglePrice)
    if(alreadyPresent){
       let updatedCart=state.cart.map((item)=>{
         if(item.id == id){
           let incre=item.noItem+1;
-          let TotalAmount=SinglePrice*incre;
+          let TotalAmount=item.price+SinglePrice;
           return{
             ...item,
             price:TotalAmount,
@@ -58,7 +59,7 @@ const CartReducer = (state,action) => {
   
 
   if(action.type === "INCREMENT_CART"){
-  let SinglePrice=data[action.payload].price;
+  let SinglePrice=data[action.payload-1].price;
 
     let IncrCart=state.cart.map((item)=>{
       if(item.id === action.payload){
@@ -81,7 +82,7 @@ const CartReducer = (state,action) => {
 
 
   if(action.type === "DECREMENT_CART"){
-  let SinglePrice=data[action.payload].price;
+  let SinglePrice=data[action.payload-1].price;
     let IncrCart=state.cart.map((item)=>{
       if(item.id === action.payload){
         let inItem=item.noItem - 1;

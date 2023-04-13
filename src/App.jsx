@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import Landing from "./pages/Landing";
 import Register from "./pages/Register";
@@ -9,14 +9,17 @@ import SignIn from "./pages/SignIn";
 import Order from "./pages/Order";
 import Cart from "./pages/Cart";
 import { CartProvider } from "./context/CartContext";
+import IsAuthenticated from "./components/IsAuthenticated";
+
 const App = () => {
-  const userName=localStorage.getItem('userName')
+
   return (
     <>
-       <CartProvider>
+      <CartProvider>
         <Router>
           <Routes>
-            <Route path="/" Component={Landing} />
+            <Route path="/" Component={IsAuthenticated} />
+            <Route path="/landing" Component={Landing} />
             <Route path="/register" Component={Register} />
             <Route path="/login" Component={Login} />
             <Route path="/sigin" Component={SignIn} />
@@ -24,9 +27,17 @@ const App = () => {
             <Route path="/products" Component={Products} />
             <Route path="/cart" Component={Cart} />
             <Route path="/order" Component={Order} />
+            <Route
+              path="*"
+              element={
+                <div>
+                  <h2>404 Page not found</h2>
+                </div>
+              }
+            />
           </Routes>
         </Router>
-        </CartProvider>
+      </CartProvider>
     </>
   );
 };

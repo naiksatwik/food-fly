@@ -48,6 +48,7 @@ const SignIn = () => {
         } else {
           window.localStorage.clear()
           window.localStorage.setItem('userName',info.profile)
+          window.localStorage.setItem("userId", info.userId);
           window.location.href="http://localhost:5173/home"
         }
       });

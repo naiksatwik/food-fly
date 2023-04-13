@@ -10,6 +10,7 @@ import Order from "./pages/Order";
 import Cart from "./pages/Cart";
 import { CartProvider } from "./context/CartContext";
 const App = () => {
+  const userName=localStorage.getItem('userName')
   return (
     <>
        <CartProvider>

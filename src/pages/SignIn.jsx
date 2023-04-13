@@ -24,7 +24,7 @@ const SignIn = () => {
   const onSubmit = (data) => {
     console.log(data);
 
-    fetch("http://localhost:5000/sign-in", {
+    fetch("http://localhost:5000/api/sign-in", {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -48,7 +48,7 @@ const SignIn = () => {
         } else {
           window.localStorage.clear()
           window.localStorage.setItem('userName',info.profile)
-          window.localStorage.setItem("userId", info.userId);
+          window.localStorage.setItem("userEmail", data.email);
           window.location.href="http://localhost:5173/home"
         }
       });

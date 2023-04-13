@@ -10,7 +10,7 @@ const Form = () => {
   let mess = "enter";
   const onSubmit = (data) => {
     console.log(data);
-    fetch("http://localhost:5000/register", {
+    fetch("http://localhost:5000/api/register", {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -33,6 +33,7 @@ const Form = () => {
           } else {
             window.localStorage.clear();
             window.localStorage.setItem("userName", data.name);
+            window.localStorage.setItem("userEmail", data.email);
             window.location.href = "http://localhost:5173/home";
           }
         });

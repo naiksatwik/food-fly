@@ -28,12 +28,12 @@ const Order = () => {
 
   let TotalCost = 0;
   return (
-    <>
+    <div>
       <Navbar />
 
       <div className="max-w-[700px] mx-auto px-10 md:px-0 ">
         {orderData.order_data?.map((item, index) => {
-          return item.order_date ? (
+          return item.order_date? (
             <div id="insert">
               <p className="text-gray-400 text-xl mt-10">{item.order_date}</p>
               <hr />
@@ -67,7 +67,7 @@ const Order = () => {
           );
         })}
       </div>
-    </>
+    </div>
   );
 };
 

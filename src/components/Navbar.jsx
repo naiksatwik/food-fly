@@ -18,6 +18,7 @@ const Navbar = () => {
   const logOut = () => {
     localStorage.clear()
     location.reload()
+    window.location.href="http://localhost:5173/sigin"
   };
   return (
     <div className="max-w-[1240px] mx-auto px-4 py-4 sticky top-0 bg-white z-40">

@@ -31,7 +31,6 @@ const Order = () => {
     <div>
       <Navbar />
      {
-
       (userEmail == null)?<h1 className="text-5xl font-medium w-full h-[80vh] flex items-center justify-center">Cart is Empty....</h1>:
       <div className="max-w-[700px] mx-auto px-10 md:px-0 ">
       {orderData.order_data?.map((item, index) => {

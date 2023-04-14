@@ -60,7 +60,9 @@ const Cart = () => {
               placeholder="PhoneNumber"
               className="border-2 border-black p-1 rounded-full mt-5 pl-6"
               onChange={(eve)=>{
-                setPhone(eve.target.value)
+                if(eve.target.value.length != 11){
+                  setPhone(eve.target.value)
+                }
               }}
             />
             <h1 className=" text-2xl font-bold  px-10 pt-4 ">
@@ -73,7 +75,10 @@ const Cart = () => {
                 </button>
               </Link>
             ) : (
-                <button className="mt-4 bg-black text-white px-4 py-2 rounded-full mr-10" onClick={()=> submit() } type="submit">
+                <button className="mt-4 bg-black text-white px-4 py-2 rounded-full mr-10" onClick={()=>{
+                (address === "" || phone === "")? alert("'address' or 'phone' field is Empty "):
+                submit()
+                }  } type="submit">
                   place Order
                 </button>
             )}

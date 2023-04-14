@@ -23,10 +23,10 @@ const Cart = () => {
     },
     body: JSON.stringify({
       email:userEmail,
-      order_data:cart,
+      order_data:[cart],
       phone,
       address,
-      order_date:new Date().toDateString()
+      order_date:new Date().toString().slice(0,25)
     }),
   }).then(res=>{
     console.log("cart Page",res)

@@ -7,11 +7,17 @@ import { Link } from "react-router-dom";
 
 const Cart = () => {
   const { cart, totalCost, totalItem } = useCartContext();
+  const[address,setAddress]=useState(null)
   let userName = window.localStorage.getItem("userName");
   let userEmail=localStorage.getItem('userEmail')
+  let userAdd;
+  let userPhone=localStorage.getItem('userPhone')
+  if(address == null){
+    userAdd=localStorage.getItem('userAddress')
+  }else{
+    userAdd=address;
+  }
   const totalCosts = totalCost();
-  const [address,setAddress]=useState('')
-  const [phone,setPhone]=useState('')
   const submit=async()=>{
     let response= await fetch("http://localhost:5000/api/orderData",{
     method: "POST",
@@ -24,8 +30,8 @@ const Cart = () => {
     body: JSON.stringify({
       email:userEmail,
       order_data:[cart],
-      phone,
-      address,
+      phone:userPhone,
+      address:userAdd,
       order_date:new Date().toString().slice(0,25)
     }),
   }).then(res=>{
@@ -55,16 +61,7 @@ const Cart = () => {
 
               }}
             />
-             <input
-              type="text"
-              placeholder="PhoneNumber"
-              className="border-2 border-black p-1 rounded-full mt-5 pl-6"
-              onChange={(eve)=>{
-                if(eve.target.value.length != 11){
-                  setPhone(eve.target.value)
-                }
-              }}
-            />
+             
             <h1 className=" text-2xl font-bold  px-10 pt-4 ">
               Total: ₹{totalCosts}
             </h1>
@@ -76,7 +73,6 @@ const Cart = () => {
               </Link>
             ) : (
                 <button className="mt-4 bg-black text-white px-4 py-2 rounded-full mr-10" onClick={()=>{
-                (address === "" || phone === "")? alert("'address' or 'phone' field is Empty "):
                 submit()
                 }  } type="submit">
                   place Order

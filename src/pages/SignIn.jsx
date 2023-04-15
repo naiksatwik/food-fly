@@ -65,6 +65,8 @@ const SignIn = () => {
           className=" flex flex-col px-16 py-16 rounded-2xl shadow-2xl shadow-purple-400 "
           onSubmit={handleSubmit(onSubmit)}
         >
+          <h1 className="text-4xl text-center font-semibold">LogIn</h1>
+
           <input
             type="text"
             placeholder="Your Email"

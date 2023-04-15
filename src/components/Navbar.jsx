@@ -11,14 +11,13 @@ import { useCartContext } from "../context/CartContext";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
-   const{ totalItem} = useCartContext();
-  const totalItems=totalItem()
-  let userName=window.localStorage.getItem('userName')
-  console.log("userNAme",userName)
+  const { totalItem } = useCartContext();
+  const totalItems = totalItem();
+  let userName = window.localStorage.getItem("userName");
+  console.log("userNAme", userName);
   const logOut = () => {
-    localStorage.clear()
-    location.reload()
-    window.location.href="http://localhost:5173/sigin"
+    localStorage.clear();
+    location.reload();
   };
   return (
     <div className="max-w-[1240px] mx-auto px-4 py-4 sticky top-0 bg-white z-40">
@@ -36,7 +35,7 @@ const Navbar = () => {
               <FaUserCheck size={25} className=" text-green-500" />
             )}
             <div className="text-xl font-semibold">
-              {userName === null? (
+              {userName === null ? (
                 <h1>User not Found</h1>
               ) : (
                 <h1>Hi, {userName}</h1>
@@ -47,33 +46,30 @@ const Navbar = () => {
 
         <div className="hidden md:block">
           <div className="flex text-sm space-x-6  pr-4">
-
-            {
-
-              (userName === null) ?
+            {userName === null ? (
               <button
-              className=" text-black font-medium px-5 py-2 shadow-md rounded-full space-x-4 "
-              onClick={() => {
-               location.href='http://localhost:5173/sigin'
-              }}
-            >
-              {/* {userName === null ? <p>login</p> : <p>Logout</p>} */}
-              Login
-            </button>:            <button
-              className=" text-black font-medium px-5 py-2 shadow-md rounded-full space-x-4 "
-              onClick={() => {
-                logOut();
-              }}
-            >
-              {/* {userName === null ? <p>login</p> : <p>Logout</p>} */}
-              Logout
-            </button>
-            }
+                className=" text-black font-medium px-5 py-2 shadow-md rounded-full space-x-4 "
+                onClick={() => {
+                  location.href = "http://localhost:5173/sigin";
+                }}
+              >
+                {/* {userName === null ? <p>login</p> : <p>Logout</p>} */}
+                Login
+              </button>
+            ) : (
+              <button
+                className=" text-black font-medium px-5 py-2 shadow-md rounded-full space-x-4 "
+                onClick={() => {
+                  logOut();
+                }}
+              >
+                {/* {userName === null ? <p>login</p> : <p>Logout</p>} */}
+                Logout
+              </button>
+            )}
 
-            <Link to='/order'>
-               <button className="blackBtn">
-                Orders
-               </button>
+            <Link to="/order">
+              <button className="blackBtn">Orders</button>
             </Link>
             <Link to="/products">
               <button className="blackBtn">Products</button>
@@ -92,42 +88,53 @@ const Navbar = () => {
           } md:left-[-300%] md:hidden z-50`}
         >
           <div className=" flex items-center space-x-2 mt-10 justify-start">
-          <div className=" flex md:items-center space-x-2">
-            {userName === null ? (
-              <FaUserPlus size={25} className=" text-red-500" />
-            ) : (
-              <FaUserCheck size={25} className=" text-green-500" />
-            )}
-            <div className="text-xl font-semibold">
-              {userName === null? (
-                <h1>User not Found</h1>
+            <div className=" flex md:items-center space-x-2">
+              {userName === null ? (
+                <FaUserPlus size={25} className=" text-red-500" />
               ) : (
-                <h1>Hi, {userName}</h1>
+                <FaUserCheck size={25} className=" text-green-500" />
               )}
+              <div className="text-xl font-semibold">
+                {userName === null ? (
+                  <h1>User not Found</h1>
+                ) : (
+                  <h1>Hi, {userName}</h1>
+                )}
+              </div>
             </div>
           </div>
-          </div>
 
-          <button
-            className=" text-black font-medium px-5 py-2 w-[6rem] shadow rounded-full mt-14"
-            onClick={() => {
-              logOut();
-            }}
-          >
-            {userName === null ? <p>login</p> : <p>Logout</p>}
-          </button>
-          <Link to='/order'>
-               <button className="blackBtn w-[6rem]">
-                Orders
-               </button>
-            </Link>
+          {userName === null ? (
+            <button
+              className=" text-black font-medium px-5 py-2 shadow-md rounded-full space-x-4 "
+              onClick={() => {
+                location.href = "http://localhost:5173/sigin";
+              }}
+            >
+              {/* {userName === null ? <p>login</p> : <p>Logout</p>} */}
+              Login
+            </button>
+          ) : (
+            <button
+              className=" text-black font-medium px-5 py-2 shadow-md rounded-full space-x-4 "
+              onClick={() => {
+                logOut();
+              }}
+            >
+              {/* {userName === null ? <p>login</p> : <p>Logout</p>} */}
+              Logout
+            </button>
+          )}
+          <Link to="/order">
+            <button className="blackBtn w-[6rem]">Orders</button>
+          </Link>
           <Link to="/products">
             <button className="blackBtn w-[6rem]">Products</button>
           </Link>
           <Link to="/cart">
             <button className="flex blackBtn justify-evenly w-[6rem]">
-            <p>{totalItems}</p>
-                Cart
+              <p>{totalItems}</p>
+              Cart
             </button>
           </Link>
         </div>

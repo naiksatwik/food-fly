@@ -12,10 +12,10 @@ const Landing = () => {
             </div>
             <div className="space-x-8">
                <Link to='/register'>
-               <button className="bg-white px-4 py-2 font-medium rounded-full shadow-md ">Login</button>
+               <button className="bg-white px-4 py-2 font-medium rounded-full shadow-md ">Register</button>
                </Link> 
                <Link to='/sigin'>
-               <button className="blackBtn">Sign in</button>
+               <button className="blackBtn">Login</button>
                </Link>
             </div>
 

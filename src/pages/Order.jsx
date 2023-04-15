@@ -17,21 +17,19 @@ const Order = () => {
     }).then(async (res) => {
       let resp = await res.json();
       await setOrderData(resp.order_data);
-      await console.log(resp.order_data.order_data);
+      await console.log(resp.order_data);
     });
   };
 
-  console.log(orderData);
   useEffect(() => {
     fetchOrder();
   }, []);
 
-  let TotalCost = 0;
   return (
     <div>
       <Navbar />
      {
-      (userEmail == null)?<h1 className="text-5xl font-medium w-full h-[80vh] flex items-center justify-center">Cart is Empty....</h1>:
+      (userEmail === null || orderData===null)?<h1 className="text-5xl font-medium w-full h-[80vh] flex items-center justify-center">Cart is Empty...</h1>:
       <div className="max-w-[700px] mx-auto px-10 md:px-0 ">
       {orderData.order_data?.map((item, index) => {
         return item.order_date? (
@@ -48,10 +46,21 @@ const Order = () => {
                 {orderData.paymentType}
               </span>
             </p>
+            <p className="font-bold ">
+              address:
+              <span className="text-emerald-400 font-medium pl-2">
+                {orderData.address}
+              </span>
+            </p>
+            <p className="font-bold ">
+              Phone:
+              <span className="text-gray-400 font-medium pl-2">
+                {orderData.phone}
+              </span>
+            </p>      
           </div>
         ) : (
           item?.map((data) => {
-            TotalCost += data.price;
 
             return (
               <div className="mt-3">

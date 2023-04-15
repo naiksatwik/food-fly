@@ -49,6 +49,8 @@ const SignIn = () => {
           window.localStorage.clear()
           window.localStorage.setItem('userName',info.profile)
           window.localStorage.setItem("userEmail", data.email);
+          window.localStorage.setItem('userAddress',info.address)
+          window.localStorage.setItem('userPhone',info.phone)
           window.location.href="http://localhost:5173/home"
         }
       });

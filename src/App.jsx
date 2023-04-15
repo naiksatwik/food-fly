@@ -10,6 +10,7 @@ import Order from "./pages/Order";
 import Cart from "./pages/Cart";
 import { CartProvider } from "./context/CartContext";
 import IsAuthenticated from "./components/IsAuthenticated";
+import Profile from "./pages/Profile";
 
 const App = () => {
 
@@ -26,6 +27,7 @@ const App = () => {
             <Route path="/home" Component={Home} />
             <Route path="/products" Component={Products} />
             <Route path="/cart" Component={Cart} />
+            <Route path="/profile" Component={Profile} />
             <Route path="/order" Component={Order} />
             <Route
               path="*"

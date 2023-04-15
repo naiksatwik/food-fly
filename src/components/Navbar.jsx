@@ -8,7 +8,6 @@ import { FaUserCheck, FaUserPlus } from "react-icons/fa";
 import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import { useCartContext } from "../context/CartContext";
-
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const { totalItem } = useCartContext();
@@ -67,7 +66,9 @@ const Navbar = () => {
                 Logout
               </button>
             )}
-
+            <Link to="/profile">
+            <button  className="blackBtn w-[6rem]">Profile</button>
+            </Link>
             <Link to="/order">
               <button className="blackBtn">Orders</button>
             </Link>
@@ -125,6 +126,9 @@ const Navbar = () => {
               Logout
             </button>
           )}
+          <Link to="/profile">
+              <button  className="blackBtn w-[6rem]">Profile</button>
+            </Link>
           <Link to="/order">
             <button className="blackBtn w-[6rem]">Orders</button>
           </Link>

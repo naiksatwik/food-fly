@@ -11,6 +11,7 @@ import Cart from "./pages/Cart";
 import { CartProvider } from "./context/CartContext";
 import IsAuthenticated from "./components/IsAuthenticated";
 import Profile from "./pages/Profile";
+import AddProduct from "./pages/AddProduct";
 
 const App = () => {
 
@@ -28,6 +29,7 @@ const App = () => {
             <Route path="/products" Component={Products} />
             <Route path="/cart" Component={Cart} />
             <Route path="/profile" Component={Profile} />
+            <Route path="/addProduct" Component={AddProduct} />
             <Route path="/order" Component={Order} />
             <Route
               path="*"

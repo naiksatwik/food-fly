@@ -6,7 +6,7 @@ const FoodCards = (props) => {
 
   console.log(props.noItem);
   return (
-    <div className="shadow-2xl rounded-lg hover:-transition-y-1 hover:scale-110 duration-400 w-[17rem] sm:w-full">
+    <div className="shadow-2xl rounded-lg hover:scale-110 duration-200 w-[17rem] sm:w-full">
       <img
         src={props.image}
         alt={props.name}

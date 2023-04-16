@@ -1,15 +1,45 @@
-import React, { useState } from "react";
-import {data} from '../data/data'
+import React, { useEffect, useState } from "react";
+
 import FoodCards from "./FoodCards";
+import axios from "axios";
+import { data } from "autoprefixer";
 const Foods = (props) => {
-    console.log(data)
-    const[food,setFoods]=useState(data);
+    
+     const getData=()=>{
+       let productData=localStorage.getItem('products');
+
+       if(productData == null){
+        return []
+       }else{
+        return JSON.parse(productData)
+       }
+     }
+    
+    const[food,setFoods]=useState(getData());
+    
+
+    const  getProduct= async()=>{
+      return await axios.get('http://localhost:5000/api/products').then((res)=>{
+       console.log("API",res.data.data)
+       setFoods(res.data.data)
+       localStorage.setItem('products',JSON.stringify(res.data.data))
+      })
+    }
+
+
+      let productData=localStorage.getItem('products');
+
+    useEffect(() => {
+      getProduct()
+      console.log(food)
+    }, [])
   
 
     // filter foods
     const filterType=(category)=>{
       setFoods(
-         data.filter((item)=>{
+         food.filter((item)=>{
+            console.log(item.category)
             return item.category === category;
         })
       )
@@ -18,11 +48,10 @@ const Foods = (props) => {
 
     const filterPrise=(price)=>{
       setFoods(
-           data.filter((item)=>{
+           food.filter((item)=>{
                return item.price <= price;
            })
       )
-
     }
   return (
     <div className="max-w-[1240px] mx-auto px-4 py-7">
@@ -35,7 +64,7 @@ const Foods = (props) => {
         <p className="font-semibold py-2">Filter Type</p>
         <div className="text-[1rem] space-x-2 flex justify-between">
         <button className="orangeButton  font-normal " onClick={()=>{
-         setFoods(data)
+         setFoods(food)
         }}>All</button>
         <button className="orangeButton  font-normal "  onClick={()=>{
          filterType('burger')
@@ -75,8 +104,8 @@ const Foods = (props) => {
        
        <div className="px-4 py-10 grid grid-flow-row sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 justify-items-center  ">
          {
-            food.map((item)=>{
-             return   <FoodCards name={item.name} price={item.price} image={item.image} id={item.id} Add={props.Add} count={props.count} noItem={item.noItem}/>
+            JSON.parse(productData).map((item)=>{
+             return   <FoodCards name={item.name} price={item.price} image={item.image} id={item.id} Add={props.Add} count={props.count} noItem={item.noItem} />
             })
          }
        </div>

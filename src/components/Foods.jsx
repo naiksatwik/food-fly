@@ -2,57 +2,41 @@ import React, { useEffect, useState } from "react";
 
 import FoodCards from "./FoodCards";
 import axios from "axios";
-import { data } from "autoprefixer";
 const Foods = (props) => {
     
-     const getData=()=>{
-       let productData=localStorage.getItem('products');
-
-       if(productData == null){
-        return []
-       }else{
-        return JSON.parse(productData)
-       }
-     }
-    
-    const[food,setFoods]=useState(getData());
-    
-
+     
+    const[food,setFoods]=useState([]);
     const  getProduct= async()=>{
       return await axios.get('http://localhost:5000/api/products').then((res)=>{
        console.log("API",res.data.data)
        setFoods(res.data.data)
-       localStorage.setItem('products',JSON.stringify(res.data.data))
+
       })
     }
-
-
-      let productData=localStorage.getItem('products');
 
     useEffect(() => {
       getProduct()
       console.log(food)
     }, [])
   
+    const [filterType,setFilterType]=useState(null)
+    const [filterPrice,setFilterPrice]=useState(2000)
+    // // filter foods
+    // const filterType=(category)=>{
+    //    return category;
 
-    // filter foods
-    const filterType=(category)=>{
-      setFoods(
-         food.filter((item)=>{
-            console.log(item.category)
-            return item.category === category;
-        })
-      )
+    // }
+    // useEffect(()=>{
+    //   console.log(filterType)
+    // },[filterType])
 
-    }
-
-    const filterPrise=(price)=>{
-      setFoods(
-           food.filter((item)=>{
-               return item.price <= price;
-           })
-      )
-    }
+    // const filterPrice=(price)=>{
+    //   setFoods(
+    //        food.filter((item)=>{
+    //            return item.price <= price;
+    //        })
+    //   )
+    // }
   return (
     <div className="max-w-[1240px] mx-auto px-4 py-7">
       <h1 className="text-[#FB8700] text-2xl font-bold text-center">
@@ -63,20 +47,21 @@ const Foods = (props) => {
        <div >
         <p className="font-semibold py-2">Filter Type</p>
         <div className="text-[1rem] space-x-2 flex justify-between">
-        <button className="orangeButton  font-normal " onClick={()=>{
-         setFoods(food)
+        <button className={`font-normal ${filterType === null ? " orangeButton bg-[#FB8700] text-white " : "orangeButton"}`} onClick={()=>{
+         setFilterType(null)
         }}>All</button>
-        <button className="orangeButton  font-normal "  onClick={()=>{
-         filterType('burger')
+        <button className={`font-normal ${filterType === 'burger' ? "orangeButton bg-[#FB8700] text-white " : "orangeButton"}`}   onClick={()=>{
+         setFilterType('burger')
         }}>Burger</button>
-        <button className="orangeButton  font-normal "onClick={()=>{
-         filterType('pizza')
+        <button className={`font-normal ${filterType === 'pizza' ? "orangeButton bg-[#FB8700] text-white " : "orangeButton"}`} onClick={()=>{
+         setFilterType('pizza')
         }}>Pizza</button>
-        <button className="orangeButton  font-normal "onClick={()=>{
-         filterType('salad')
+        <button className={`font-normal ${filterType === 'salad' ? "orangeButton bg-[#FB8700] text-white " : "orangeButton"}`} onClick={()=>{
+         setFilterType('salad')
+
         }}>Salad</button>
-        <button className="orangeButton  font-normal "onClick={()=>{
-         filterType('chicken')
+        <button className={`font-normal ${filterType === 'chicken' ? "orangeButton bg-[#FB8700] text-white " : "orangeButton"}`} onClick={()=>{
+         setFilterType('chicken')
         }}>Chicken</button>
         </div>
        </div>
@@ -84,17 +69,18 @@ const Foods = (props) => {
        <div >
         <p className="font-semibold py-2 md:text-right px-1">Filter Price</p>
         <div className="text-[1rem] space-x-2 flex justify-between" >
-        <button className="orangeButton font-normal" onClick={()=>{
-         filterPrise(100)
+        
+        <button className={`font-normal ${filterPrice === 100 ? "orangeButton bg-[#FB8700] text-white " : "orangeButton"}`} onClick={()=>{
+         setFilterPrice(100)
         }}>₹100</button>
-        <button className="orangeButton font-normal"onClick={()=>{
-         filterPrise(500)
+        <button className={`font-normal ${filterPrice === 500 ? "orangeButton bg-[#FB8700] text-white " : "orangeButton"}`} onClick={()=>{
+         setFilterPrice(500)
         }}>₹500</button>
-        <button className="orangeButton font-normal"onClick={()=>{
-         filterPrise(1000)
+        <button className={`font-normal ${filterPrice === 1000 ? "orangeButton bg-[#FB8700] text-white " : "orangeButton"}`} onClick={()=>{
+         setFilterPrice(1000)
         }}>₹1000</button>
-        <button className="orangeButton font-normal" onClick={()=>{
-         filterPrise(2000)
+        <button className={`font-normal ${filterPrice === 2000 ? "orangeButton bg-[#FB8700] text-white " : "orangeButton"}`}  onClick={()=>{
+         setFilterPrice(2000)
         }}>₹2000</button>
         </div>
        </div>
@@ -104,8 +90,11 @@ const Foods = (props) => {
        
        <div className="px-4 py-10 grid grid-flow-row sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 justify-items-center  ">
          {
-            JSON.parse(productData).map((item)=>{
-             return   <FoodCards name={item.name} price={item.price} image={item.image} id={item.id} Add={props.Add} count={props.count} noItem={item.noItem} />
+            food.map((item)=>{
+              if((item.category === filterType && item.price <= filterPrice)|| filterType === null  ){
+                return   <FoodCards name={item.name} price={item.price} image={item.image} id={item.id} Add={props.Add} count={props.count} noItem={item.noItem} />
+              }
+
             })
          }
        </div>

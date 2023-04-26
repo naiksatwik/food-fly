@@ -49,7 +49,6 @@ const Foods = (props) => {
         <div className="text-[1rem] space-x-2 flex justify-between">
         <button className={`font-normal ${filterType === null ? " orangeButton bg-[#FB8700] text-white " : "orangeButton"}`} onClick={()=>{
          setFilterType(null)
-         setFilterPrice(Number.MAX_VALUE)
         }}>All</button>
         <button className={`font-normal ${filterType === 'burger' ? "orangeButton bg-[#FB8700] text-white " : "orangeButton"}`}   onClick={()=>{
          setFilterType('burger')
@@ -92,7 +91,7 @@ const Foods = (props) => {
        <div className="px-4 py-10 grid grid-flow-row sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 justify-items-center  ">
          {
             food.map((item)=>{
-              if((item.category === filterType && item.price <= filterPrice)|| filterType === null  ){
+              if((item.category === filterType && item.price <= filterPrice)|| (filterType === null && item.price <=filterPrice)  ){
                 return   <FoodCards name={item.name} price={item.price} image={item.image} id={item.id} Add={props.Add} count={props.count} noItem={item.noItem} />
               }
 

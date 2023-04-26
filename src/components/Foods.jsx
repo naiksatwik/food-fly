@@ -20,7 +20,7 @@ const Foods = (props) => {
     }, [])
   
     const [filterType,setFilterType]=useState(null)
-    const [filterPrice,setFilterPrice]=useState(2000)
+    const [filterPrice,setFilterPrice]=useState(Number.MAX_VALUE)
     // // filter foods
     // const filterType=(category)=>{
     //    return category;
@@ -49,6 +49,7 @@ const Foods = (props) => {
         <div className="text-[1rem] space-x-2 flex justify-between">
         <button className={`font-normal ${filterType === null ? " orangeButton bg-[#FB8700] text-white " : "orangeButton"}`} onClick={()=>{
          setFilterType(null)
+         setFilterPrice(Number.MAX_VALUE)
         }}>All</button>
         <button className={`font-normal ${filterType === 'burger' ? "orangeButton bg-[#FB8700] text-white " : "orangeButton"}`}   onClick={()=>{
          setFilterType('burger')

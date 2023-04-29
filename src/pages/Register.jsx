@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../assets/logo.png";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -7,46 +7,60 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Form = () => {
   const Navigate = useNavigate();
+  const [UserType, setUserType] = useState(null);
+  const [secretKey,setSecretKey]=useState(null);
   let mess = "enter";
-  const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+  const phoneRegExp =
+    /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
   const onSubmit = (data) => {
-    console.log(data);
-    fetch("http://localhost:5000/api/register", {
-      method: "POST",
-      crossDomain: true,
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify({
-        name: data.name,
-        email: data.email,
-        password: data.password,
-        address:data.address,
-        phone:data.phone
-      }),
-    })
-      .then((res) => {
-        res.json().then((info) => {
-          console.log(info.error);
-          if (info.error === "User Exists") {
-            document.getElementById("track").innerHTML =
-              "This Email is already registered";
-          } else {
-            window.localStorage.clear();
-            window.localStorage.setItem("userName", data.name);
-            window.localStorage.setItem("userEmail", data.email);
-            window.localStorage.setItem("userAddress", data.address);
-            window.localStorage.setItem("userPhone", data.phone);
-            window.location.href = "http://localhost:5173/home";
-          }
-        });
+
+    if(UserType == 'Admin' && secretKey != "satwik" ){
+         alert("Enter Secret Key...")
+    }else{
+      console.log(data);
+      fetch("http://localhost:5000/api/register", {
+        method: "POST",
+        crossDomain: true,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          password: data.password,
+          address: data.address,
+          phone: data.phone,
+          UserType,
+        }),
       })
-      .then((ans) => {
-        console.log(ans);
-      });
+        .then((res) => {
+          res.json().then((info) => {
+            console.log(info.error);
+            if (info.error === "User Exists") {
+              document.getElementById("track").innerHTML =
+                "This Email is already registered";
+            } else {
+              window.localStorage.clear();
+              window.localStorage.setItem("userName", data.name);
+              window.localStorage.setItem("userEmail", data.email);
+              window.localStorage.setItem("userAddress", data.address);
+              window.localStorage.setItem("userPhone", data.phone);
+              if(UserType == 'Admin'){
+                window.location.href = "http://localhost:5173/foodfly/user-type/admin";
+              }else{
+                window.location.href = "http://localhost:5173/home";
+              }
+            }
+          });
+        })
+        .then((ans) => {
+          console.log(ans);
+        });
+    }
+    
   };
 
   const schema = yup.object({
@@ -60,13 +74,13 @@ const Form = () => {
         "confirm password must same as 'password'"
       )
       .required(),
-    address:yup.string().min(7).required(),
-    phone: yup.string()
-  .required("required")
-  .matches(phoneRegExp, 'Phone number is not valid')
-  .min(10, "too short")
-  .max(10, "too long"),
-
+    address: yup.string().min(7).required(),
+    phone: yup
+      .string()
+      .required("required")
+      .matches(phoneRegExp, "Phone number is not valid")
+      .min(10, "too short")
+      .max(10, "too long"),
   });
   const {
     register,
@@ -86,7 +100,35 @@ const Form = () => {
           className=" flex flex-col px-6 py-6 rounded-2xl shadow-2xl shadow-purple-400 "
           onSubmit={handleSubmit(onSubmit)}
         >
-          <h1 className="text-4xl text-center font-semibold">Register</h1>
+          <h1 className="text-4xl text-center font-semibold">
+            {UserType} Register
+          </h1>
+
+          <div className="w-full flex justify-start  p-2">
+            <p>User Type:</p>
+            <div className="px-2">
+              <input
+                type="radio"
+                name="UserType"
+                value="User"
+                onChange={(e) => {
+                  setUserType(e.target.value);
+                }}
+              />
+              <span>User</span>
+            </div>
+            <div>
+              <input
+                type="radio"
+                name="UserType"
+                value="Admin"
+                onChange={(e) => {
+                  setUserType(e.target.value);
+                }}
+              />
+              <span>Admin</span>
+            </div>
+          </div>
           <input
             type="text"
             placeholder="Your name"
@@ -102,7 +144,10 @@ const Form = () => {
             className="border-2 py-2 px-10 rounded-full mt-2"
             {...register("email")}
           />
-          <p className="text-red-500 text-sm text-left pl-5 w-[25rem]" id="track">
+          <p
+            className="text-red-500 text-sm text-left pl-5 w-[25rem]"
+            id="track"
+          >
             {errors.email?.message}
           </p>
           <input
@@ -142,6 +187,22 @@ const Form = () => {
           <p className="text-red-500 text-sm text-left pl-5 w-[25rem]">
             {errors.phone?.message}
           </p>
+
+          <div
+            className={` ${
+              UserType == "User" || UserType == null ? "hidden" : "block"
+            }`}
+          >
+            <input
+              type="text"
+              placeholder="secret KEY."
+              className={`border-2 py-2 px-10 rounded-full mt-1`}
+              onChange={(e)=>{
+                setSecretKey(e.target.value)
+              }}
+            />
+          </div>
+
           <div className="w-full flex justify-between">
             <input
               type="submit"
@@ -161,5 +222,3 @@ const Form = () => {
 };
 
 export default Form;
-
-

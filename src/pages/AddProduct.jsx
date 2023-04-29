@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
+import AdminNavBar from "../components/AdminNavBar";
+
 const AddProduct = () => {
   const [name, setName] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
@@ -31,7 +32,7 @@ const AddProduct = () => {
 
   return (
     <>
-      <Navbar />
+      <AdminNavBar />
 
       <div className="w-full h-[82vh] ">
         <h1 className=" text-4xl  font-bold text-center pt-10 ">
@@ -85,7 +86,7 @@ const AddProduct = () => {
             <p className="pb-1">Price</p>₹{" "}
             <input
               type="number"
-              placeholder="Enter Image URL.."
+              placeholder="Enter Product Price"
               className="pl-2  border-2  rounded-lg"
               value={price}
               onChange={(eve) => {

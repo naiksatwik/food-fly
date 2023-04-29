@@ -12,6 +12,7 @@ import { CartProvider } from "./context/CartContext";
 import IsAuthenticated from "./components/IsAuthenticated";
 import Profile from "./pages/Profile";
 import AddProduct from "./pages/AddProduct";
+import AdminDashBoard from "./pages/AdminDashBoard";
 
 const App = () => {
 
@@ -31,6 +32,7 @@ const App = () => {
             <Route path="/profile" Component={Profile} />
             <Route path="/addProduct" Component={AddProduct} />
             <Route path="/order" Component={Order} />
+            <Route path="/foodfly/user-type/admin" Component={AdminDashBoard} />
             <Route
               path="*"
               element={

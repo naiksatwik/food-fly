@@ -19,6 +19,7 @@ const Cart = () => {
   }
   const totalCosts = totalCost();
   const submit=async()=>{
+    cart.push(totalCosts);
     let response= await fetch("http://localhost:5000/api/orderData",{
     method: "POST",
     crossDomain: true,
@@ -37,7 +38,10 @@ const Cart = () => {
   }).then(res=>{
     console.log("cart Page",res)
     if(res.status === 200){
+  console.log(cart)
+
     localStorage.removeItem('CartItem');
+
     location.reload()
   }
   }) 

@@ -29,7 +29,7 @@ const Order = () => {
     <div>
       <Navbar />
      {
-      (userEmail === null || orderData===null)?<h1 className="text-5xl font-medium w-full h-[80vh] flex items-center justify-center">Cart is Empty...</h1>:
+      (userEmail === null || orderData===null)?<h1 className="text-5xl font-medium w-full h-[80vh] flex items-center justify-center">Order Page is Empty...</h1>:
       <div className="max-w-[700px] mx-auto px-10 md:px-0 ">
       {orderData.order_data?.map((item, index) => {
         return item.order_date? (
@@ -60,9 +60,10 @@ const Order = () => {
             </p>      
           </div>
         ) : (
-          item?.map((data) => {
+          item?.map((data,index) => {
 
             return (
+              (index <= item.length-2)?
               <div className="mt-3">
                 <div className="shadow-[0px_1px_4px_2px_rgba(0,0,0,0.56)] w-[15rem] md:w-[30rem] p-4 rounded-md  hover:scale-110 duration-200">
                   <p className="font-bold text-xl">
@@ -71,7 +72,8 @@ const Order = () => {
                   <p className="font-medium ">quantity:   {data.noItem}</p>
                   <p className="text-sm font-medium">price: ₹{data.price}</p>
                 </div>
-              </div>
+              </div>:
+              <h1 className="text-2xl font-semibold pt-4 ">Total :₹ {data}/-</h1>
             );
           })
         );

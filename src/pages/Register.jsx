@@ -6,7 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Link, useNavigate } from "react-router-dom";
 
 const Form = () => {
-  const Navigate = useNavigate();
+  const Navig = useNavigate()
   const [UserType, setUserType] = useState(null);
   const [secretKey,setSecretKey]=useState(null);
   let mess = "enter";
@@ -49,9 +49,9 @@ const Form = () => {
               window.localStorage.setItem("userAddress", data.address);
               window.localStorage.setItem("userPhone", data.phone);
               if(UserType == 'Admin'){
-                window.location.href = "http://localhost:5173/foodfly/user-type/admin";
+                 Navig('/foodfly/user-type/admin')
               }else{
-                window.location.href = "http://localhost:5173/home";
+                Navig('/home')
               }
             }
           });

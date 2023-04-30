@@ -3,12 +3,10 @@ import logo from "../assets/logo.png";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Link, useNavigate } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 
 const SignIn = () => {
-
-
-  const Navigator = useNavigate();
+  const Navig = useNavigate()
   const schema = yup.object({
     email: yup.string().email().required(),
     password: yup.string().min(4).max(20).required(),
@@ -46,12 +44,18 @@ const SignIn = () => {
           document.getElementById("track2").innerHTML =
             "Password is not correct !";
         } else {
-          window.localStorage.clear()
-          window.localStorage.setItem('userName',info.profile)
+          window.localStorage.clear();
+          window.localStorage.setItem("userName", info.profile);
           window.localStorage.setItem("userEmail", data.email);
-          window.localStorage.setItem('userAddress',info.address)
-          window.localStorage.setItem('userPhone',info.phone)
-          window.location.href="http://localhost:5173/home"
+          window.localStorage.setItem("userAddress", info.address);
+          window.localStorage.setItem("userPhone", info.phone);
+          window.localStorage.setItem("UserType", info.UserType);
+
+          if (info.UserType == "Admin") {
+            Navig("/foodfly/user-type/admin")
+          } else {
+            Navig("/home")
+          }
         }
       });
     });

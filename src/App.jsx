@@ -13,11 +13,13 @@ import IsAuthenticated from "./components/IsAuthenticated";
 import Profile from "./pages/Profile";
 import AddProduct from "./pages/AddProduct";
 import AdminDashBoard from "./pages/AdminDashBoard";
+import { ProductContext } from "./context/ProductContext";
 
 const App = () => {
 
   return (
     <>
+    <ProductContext>
       <CartProvider>
         <Router>
           <Routes>
@@ -44,6 +46,7 @@ const App = () => {
           </Routes>
         </Router>
       </CartProvider>
+      </ProductContext>
     </>
   );
 };

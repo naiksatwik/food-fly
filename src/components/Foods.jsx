@@ -1,42 +1,16 @@
 import React, { useEffect, useState } from "react";
 
 import FoodCards from "./FoodCards";
-import axios from "axios";
+
+import { useProductContext } from "../context/ProductContext";
 const Foods = (props) => {
-    
-     
-    const[food,setFoods]=useState([]);
-    const  getProduct= async()=>{
-      return await axios.get('http://localhost:5000/api/products').then((res)=>{
-       console.log("API",res.data.data)
-       setFoods(res.data.data)
+    const {food} =useProductContext()
+     console.log("Product",food)
 
-      })
-    }
-
-    useEffect(() => {
-      getProduct()
-      console.log(food)
-    }, [])
   
     const [filterType,setFilterType]=useState(null)
     const [filterPrice,setFilterPrice]=useState(Number.MAX_VALUE)
-    // // filter foods
-    // const filterType=(category)=>{
-    //    return category;
 
-    // }
-    // useEffect(()=>{
-    //   console.log(filterType)
-    // },[filterType])
-
-    // const filterPrice=(price)=>{
-    //   setFoods(
-    //        food.filter((item)=>{
-    //            return item.price <= price;
-    //        })
-    //   )
-    // }
   return (
     <div className="max-w-[1240px] mx-auto px-4 py-7">
       <h1 className="text-[#FB8700] text-2xl font-bold text-center">

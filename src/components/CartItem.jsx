@@ -30,7 +30,7 @@ const CartItem = (props) => {
           }}>
             -
           </button>
-        </div>
+        </div> 
       </div>
       <div>
         <AiFillDelete size={30}  className="text-red-500 md:mr-8 mt-4 cursor-pointer" onClick={()=>removeProduct(id)}/>

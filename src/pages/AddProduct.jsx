@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import AdminNavBar from "../components/AdminNavBar";
+import { useProductContext } from "../context/ProductContext";
 
 const AddProduct = () => {
   const [name, setName] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
   const [price, setPrice] = useState(null);
   const [category, setCategory] = useState(null);
+  const {food}=useProductContext();
+  const  ProductId=food.length+1;
+  console.log(ProductId)
   function run() {
     fetch("http://localhost:5000/api/addProduct", {
       method: "POST",
@@ -16,6 +20,7 @@ const AddProduct = () => {
         "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify({
+        id:ProductId,
         name,
         category,
         image: imageUrl,
@@ -90,7 +95,7 @@ const AddProduct = () => {
               className="pl-2  border-2  rounded-lg"
               value={price}
               onChange={(eve) => {
-                setPrice(eve.target.value);
+                setPrice(Number(eve.target.value));
               }}
             />
           </div>

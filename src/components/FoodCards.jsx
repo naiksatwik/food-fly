@@ -3,8 +3,7 @@ import { useCartContext } from "../context/CartContext";
 
 const FoodCards = (props) => {
   const { addItem } = useCartContext();
-
-  console.log(props.noItem);
+  const Price=Number(props.price);
   return (
     <div className="shadow-2xl rounded-lg hover:scale-110 duration-200 w-[17rem] sm:w-full">
       <img
@@ -23,7 +22,7 @@ const FoodCards = (props) => {
             onClick={() =>
               addItem(
                 props.id,
-                props.price,
+                Price,
                 props.image,
                 props.name,
                 props.noItem

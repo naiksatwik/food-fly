@@ -1,6 +1,8 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
+import axios from "axios";
+import { createContext, useContext, useEffect, useReducer, useState } from "react";
 
 import CartReducer from  '../Reducer/CartReducer'
+import { useProductContext } from "./ProductContext";
 const CartContext=createContext()
 
 const getLocalCartData=()=>{
@@ -15,9 +17,10 @@ const getLocalCartData=()=>{
 }
 
 const CartProvider=({children})=>{
+    const {food}= useProductContext();
+     console.log("Food Conetxt:",food)
     const initialState={
         cart:getLocalCartData(),
-        total_Item:"56666",
         total_amount:""
     }
     const [state, dispatch] = useReducer(CartReducer, initialState);
@@ -26,7 +29,6 @@ const CartProvider=({children})=>{
         dispatch({type:"REMOVE_ITEM",payload:id})
     }
     
-
     const incrementProduct=(id)=>{
         dispatch({type:"INCREMENT_CART",payload:id});
     }
@@ -34,8 +36,7 @@ const CartProvider=({children})=>{
     const decrementProduct=(id)=>{
         dispatch({type:"DECREMENT_CART",payload:id});
     }
-    const addItem=(id,price,image,pname,noItem)=>{
-        console.log("noItem",noItem)
+    const addItem= async(id,price,image,pname,noItem)=>{
         dispatch({type:"ADD_TO_CART",payload:{id,price,image,pname,noItem}})
     }
     

@@ -3,14 +3,21 @@ import { useProductContext } from '../context/ProductContext';
 
 const CartReducer = (state,action) => {
   const {food}= useProductContext();
-
+  
+  const foodPriceFinder=(id)=>{
+    for(let i=0;i < food.length;i++){
+      if(id == food[i].id){
+        return food[i].price;
+      }
+    }
+  }
   console.log("food",food)
   if(action.type === 'ADD_TO_CART'){
     let {id,price,image,pname,noItem}=action.payload;
 
    let alreadyPresent=state.cart.find((item)=> item.id == id)
    console.log("foodRed",food);
-  let SinglePrice=food[id-1].price;
+  let SinglePrice=foodPriceFinder(id);
    console.log("Single price",SinglePrice)
    if(alreadyPresent){
       let updatedCart=state.cart.map((item)=>{
@@ -63,7 +70,7 @@ const CartReducer = (state,action) => {
   
 
   if(action.type === "INCREMENT_CART"){
-  let SinglePrice=food[action.payload-1].price;
+  let SinglePrice=foodPriceFinder(action.payload);
 
     let IncrCart=state.cart.map((item)=>{
       if(item.id === action.payload){
@@ -86,7 +93,7 @@ const CartReducer = (state,action) => {
 
 
   if(action.type === "DECREMENT_CART"){
-  let SinglePrice=food[action.payload-1].price;
+  let SinglePrice=foodPriceFinder(action.payload);
     let IncrCart=state.cart.map((item)=>{
       if(item.id === action.payload){
         let inItem=item.noItem - 1;

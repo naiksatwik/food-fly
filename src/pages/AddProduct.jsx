@@ -8,8 +8,8 @@ const AddProduct = () => {
   const [price, setPrice] = useState(null);
   const [category, setCategory] = useState(null);
   const {food}=useProductContext();
-  const  ProductId=food.length+1;
-  console.log(ProductId)
+  const  ProObj=food[food.length-1];
+  const ProductId=ProObj.id+1;
   function run() {
     fetch("http://localhost:5000/api/addProduct", {
       method: "POST",
@@ -108,6 +108,7 @@ const AddProduct = () => {
             }}
           />
         </div>
+    
       </div>
     </>
   );

@@ -72,6 +72,14 @@ const AdminNavBar = () => {
                 </div>
               </button>
             </Link>
+ 
+            <Link to="/foodfly/DelItem">
+            <button className="blackBtn w-[6rem] text-sm">
+              <div className=" ">
+                DelFood
+              </div>
+            </button>
+          </Link>
           </div>
         </div>
         <div

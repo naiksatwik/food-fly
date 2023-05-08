@@ -6,7 +6,6 @@ const ProductContext = ({children}) => {
 
     const[food,setFoods]=useState([]);
 
-
     useEffect(() => {
       const  getProduct= async()=>{
         return await axios.get('http://localhost:5000/api/products').then((res)=>{
@@ -21,8 +20,6 @@ const ProductContext = ({children}) => {
     }, [])
 
 
-    
-  
     return   <ProductCon.Provider value={{food}} >{children}</ProductCon.Provider>
 }
 

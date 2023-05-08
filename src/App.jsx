@@ -14,6 +14,7 @@ import Profile from "./pages/Profile";
 import AddProduct from "./pages/AddProduct";
 import AdminDashBoard from "./pages/AdminDashBoard";
 import { ProductContext } from "./context/ProductContext";
+import DelItem from "./pages/DelItem";
 
 const App = () => {
 
@@ -35,6 +36,8 @@ const App = () => {
             <Route path="/addProduct" Component={AddProduct} />
             <Route path="/order" Component={Order} />
             <Route path="/foodfly/user-type/admin" Component={AdminDashBoard} />
+            <Route path="/foodfly/DelItem" Component={DelItem} />
+
             <Route
               path="*"
               element={

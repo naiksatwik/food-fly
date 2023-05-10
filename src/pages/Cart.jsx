@@ -20,7 +20,7 @@ const Cart = () => {
   const totalCosts = totalCost();
   const submit=async()=>{
     cart.push(totalCosts);
-    let response= await fetch("http://localhost:5000/api/orderData",{
+    let response= await fetch("http://localhost:5000/api/ProductToAdmin",{
     method: "POST",
     crossDomain: true,
     headers: {
@@ -30,10 +30,11 @@ const Cart = () => {
     },
     body: JSON.stringify({
       email:userEmail,
-      order_data:[cart],
-      phone:userPhone,
+      order_data:cart,
       address:userAdd,
-      order_date:new Date().toString().slice(0,25)
+      userName,
+      phone:userPhone,
+      Time:new Date().toString().slice(0,25)
     }),
   }).then(res=>{
     console.log("cart Page",res)

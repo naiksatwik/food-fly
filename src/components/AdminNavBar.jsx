@@ -64,6 +64,13 @@ const AdminNavBar = () => {
                 Logout
               </button>
             )}
+            <Link to="/foodfly/user-type/admin">
+            <button className="blackBtn w-[6rem] text-sm">
+              <div className=" ">
+                DashBoard
+              </div>
+            </button>
+          </Link>
 
             <Link to="/addProduct">
               <button className="blackBtn w-[6rem] text-sm">
@@ -125,6 +132,13 @@ const AdminNavBar = () => {
               Logout
             </button>
           )}
+          <Link to="/foodfly/user-type/admin">
+          <button className="blackBtn w-[6rem] text-sm">
+            <div className=" ">
+              DashBoard
+            </div>
+          </button>
+        </Link>
           <Link to="/addProduct">
               <button className="blackBtn w-[7rem] text-sm">
                 <div className="flex items-center space-x-3 ">
@@ -132,6 +146,14 @@ const AdminNavBar = () => {
                 </div>
               </button>
             </Link>
+
+            <Link to="/foodfly/DelItem">
+            <button className="blackBtn w-[6rem] text-sm">
+              <div className=" ">
+                DelFood
+              </div>
+            </button>
+          </Link>
         </div>
         {toggle ? (
           <AiOutlineClose

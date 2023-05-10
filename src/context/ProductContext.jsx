@@ -5,7 +5,7 @@ const ProductCon=createContext()
 const ProductContext = ({children}) => {
 
     const[food,setFoods]=useState([]);
-
+    const[orders,setOrders]=useState([]);
     useEffect(() => {
       const  getProduct= async()=>{
         return await axios.get('http://localhost:5000/api/products').then((res)=>{
@@ -15,12 +15,24 @@ const ProductContext = ({children}) => {
         })
       }
 
+
       getProduct();
 
     }, [])
 
+useEffect(() => {
+  const  getOrders= async()=>{
+    return await axios.get('http://localhost:5000/api/ProductToAdmin').then((res)=>{
+     console.log("Order API",res.data.data)
+     setOrders(res.data.data)
+     console.log(orders)
+    })
+  }
+  getOrders();
 
-    return   <ProductCon.Provider value={{food}} >{children}</ProductCon.Provider>
+}, [])
+
+    return   <ProductCon.Provider value={{food,orders}} >{children}</ProductCon.Provider>
 }
 
 

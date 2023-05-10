@@ -21,7 +21,7 @@ const FoodCards = (props) => {
        </div>
        <div className="w-1/3 flex items-center justify-center">
          <button
-           className="orangeButton px-4 text-sm"
+           className="orangeButton px-4 text-sm hover:bg-green-600  hover:text-white  hover:border-green-600"
            onClick={() =>
              addItem(
                props.id,
@@ -44,7 +44,8 @@ const FoodCards = (props) => {
      </div>
      <div className="w-1/3 flex items-center justify-center">
        <button
-         className="orangeButton px-4 text-sm"
+       id="but"
+         className="orangeButton px-4 text-sm hover:bg-green-600  hover:text-white  hover:border-green-600"
          onClick={() =>
            addItem(
              props.id,

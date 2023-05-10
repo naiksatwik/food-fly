@@ -151,6 +151,9 @@ const Navbar = () => {
             className="md:hidden"
           />
         ) : (
+          <div className="md:hidden">
+
+          <div className="h-5 w-8 bg-black  right-[2rem]  flex items-center justify-center text-sm text-white absolute rounded-full ">{totalItems}</div>
           <AiOutlineMenu
             onClick={() => {
               setToggle(!toggle);
@@ -158,7 +161,10 @@ const Navbar = () => {
             size={30}
             className="md:hidden"
           />
+      </div>
+
         )}
+
       </div>
     </div>
   );

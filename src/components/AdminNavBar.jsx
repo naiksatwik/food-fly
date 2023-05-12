@@ -11,7 +11,7 @@ const AdminNavBar = () => {
   const { totalItem } = useCartContext();
   const totalItems = totalItem();
   let userName = window.localStorage.getItem("userName");
-  console.log("userNAme", userName);
+  let userType = window.localStorage.getItem("UserType");
   const logOut = () => {
     localStorage.clear();
     location.reload();
@@ -26,13 +26,13 @@ const AdminNavBar = () => {
         </div>
         <div className="hidden md:block">
           <div className=" flex md:items-center space-x-2">
-            {userName === null ? (
+            {(userName === null || userType == 'User' )? (
               <FaUserPlus size={25} className=" text-red-500" />
             ) : (
               <GrUserAdmin size={25} className=" text-green-500" />
             )}
             <div className="text-xl font-semibold">
-              {userName === null ? (
+              {(userName === null || userType == 'User' )? (
                 <h1>Admin not Found</h1>
               ) : (
                 <h1>Hi, {userName}</h1>
@@ -43,7 +43,7 @@ const AdminNavBar = () => {
 
         <div className="hidden md:block">
           <div className="flex text-sm space-x-6  pr-4">
-            {userName === null ? (
+            {userName === null  ? (
               <button
                 className=" text-black font-medium px-5 py-2 shadow-md rounded-full space-x-4 "
                 onClick={() => {

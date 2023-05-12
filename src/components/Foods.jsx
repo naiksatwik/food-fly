@@ -5,9 +5,6 @@ import FoodCards from "./FoodCards";
 import { useProductContext } from "../context/ProductContext";
 const Foods = (props) => {
     const {food} =useProductContext()
-     console.log("Product",food)
-
-  
     const [filterType,setFilterType]=useState(null)
     const [filterPrice,setFilterPrice]=useState(Number.MAX_VALUE)
 

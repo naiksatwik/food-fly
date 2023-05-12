@@ -14,7 +14,7 @@ const Form = () => {
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
   const onSubmit = (data) => {
-
+if(UserType != null){
     if(UserType == 'Admin' && secretKey != "satwik" ){
          alert("Enter Secret Key...")
     }else{
@@ -48,6 +48,7 @@ const Form = () => {
               window.localStorage.setItem("userEmail", data.email);
               window.localStorage.setItem("userAddress", data.address);
               window.localStorage.setItem("userPhone", data.phone);
+              window.localStorage.setItem("UserType", UserType);
               if(UserType == 'Admin'){
                  Navig('/foodfly/user-type/admin')
               }else{
@@ -60,7 +61,9 @@ const Form = () => {
           console.log(ans);
         });
     }
-    
+}else{
+  alert("Select Admin Or User")
+}
   };
 
   const schema = yup.object({

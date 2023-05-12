@@ -16,9 +16,7 @@ const CartReducer = (state,action) => {
     let {id,price,image,pname,noItem}=action.payload;
 
    let alreadyPresent=state.cart.find((item)=> item.id == id)
-   console.log("foodRed",food);
   let SinglePrice=foodPriceFinder(id);
-   console.log("Single price",SinglePrice)
    if(alreadyPresent){
       let updatedCart=state.cart.map((item)=>{
         if(item.id == id){

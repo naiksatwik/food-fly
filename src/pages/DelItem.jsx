@@ -5,6 +5,7 @@ import FoodCards from "../components/FoodCards";
 import { useProductContext } from "../context/ProductContext";
 
 const DelItem = () => {
+  const UserType=localStorage.getItem("UserType")
   const [id, setId] = useState(null);
   const {food} = useProductContext()
   const delProductById = () => {
@@ -27,7 +28,10 @@ const DelItem = () => {
   return (
     <>
       <AdminNavBar />
-      <div className="max-w-[1240px] mx-auto">
+
+      {
+        (UserType == null || UserType == 'User')?<div className='text-3xl font-semibold text-red-500 h-[80vh] flex justify-center items-center'>Not Login as Admin</div>:
+        <div className="max-w-[1240px] mx-auto">
         <h1 className="font-medium text-center text-4xl py-5">
           Delete Product{" "}
         </h1>
@@ -57,6 +61,7 @@ const DelItem = () => {
         }
       </div>
       </div>
+      }
     </>
   );
 };

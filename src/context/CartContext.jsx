@@ -7,18 +7,15 @@ const CartContext=createContext()
 
 const getLocalCartData=()=>{
    let cartData=localStorage.getItem('CartItem');
-   console.log(cartData)
    if(cartData === null){
      return []
    }else{
-    console.log("JSON PARSER",JSON.parse(cartData))
      return JSON.parse(cartData);
    }
 }
 
 const CartProvider=({children})=>{
     const {food}= useProductContext();
-     console.log("Food Conetxt:",food)
     const initialState={
         cart:getLocalCartData(),
         total_amount:""

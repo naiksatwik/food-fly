@@ -12,7 +12,7 @@ const OrderCard = (props) => {
           Order Id:
           <span className="text-[#9000D3]">{props.id}</span>
         </p>
-        <p>Product : {props.LItem}Item</p>
+        <p>Product : {props.LItem-1}Item</p>
         <p>Payment Type:COD</p>
         <p>Phone:{props.phone}</p>
         <p>Address:{props.add}</p>

@@ -15,7 +15,7 @@ const Form = () => {
 
   const onSubmit = (data) => {
 if(UserType != null){
-    if(UserType == 'Admin' && secretKey != "satwik" ){
+    if(UserType == 'Admin' && secretKey != "foodfly@admin" ){
          alert("Enter Secret Key...")
     }else{
       console.log(data);

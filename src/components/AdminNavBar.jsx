@@ -8,6 +8,7 @@ import { useCartContext } from "../context/CartContext";
 
 const AdminNavBar = () => {
   const [toggle, setToggle] = useState(false);
+  const [NavToggle, setNevToggle] = useState(false);
   const { totalItem } = useCartContext();
   const totalItems = totalItem();
   let userName = window.localStorage.getItem("userName");
@@ -20,6 +21,7 @@ const AdminNavBar = () => {
     <div className="max-w-[1240px] mx-auto px-4 py-4 sticky top-0 bg-white z-40">
       <div className="w-full px-4 flex justify-between text items-center relative">
         <div className="flex pr-3 items-center">
+          
           <Link to="/home">
             <img src={logo} alt="" className="w-[7rem] " />
           </Link>

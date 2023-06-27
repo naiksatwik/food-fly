@@ -22,7 +22,6 @@ const Order = () => {
    
          }
       
-
     </div>
   );
 };

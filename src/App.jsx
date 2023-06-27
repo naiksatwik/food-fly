@@ -37,7 +37,6 @@ const App = () => {
             <Route path="/order" Component={Order} />
             <Route path="/foodfly/user-type/admin" Component={AdminDashBoard} />
             <Route path="/foodfly/DelItem" Component={DelItem} />
-
             <Route
               path="*"
               element={

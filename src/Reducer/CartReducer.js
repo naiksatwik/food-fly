@@ -11,7 +11,8 @@ const CartReducer = (state,action) => {
       }
     }
   }
-  console.log("food",food)
+
+
   if(action.type === 'ADD_TO_CART'){
     let {id,price,image,pname,noItem}=action.payload;
 

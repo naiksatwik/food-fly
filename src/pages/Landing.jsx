@@ -18,13 +18,12 @@ const Landing = () => {
                <button className="blackBtn">Login</button>
                </Link>
             </div>
-
           </div>
-                      
+
           <div className="px-10">
                 <h1 className="text-7xl font-medium pt-10">Hungry?</h1>
                 <h3 className="text-[#555353] text-xl pt-[2rem]">Order food from favourite restaurants near you</h3>
-                <p className="text-[13px] text-[#979090] pt-[2rem]">POPULAR CITIES IN INDIA</p>
+                <p className="text-[13px] text-[#979090] pt-[2rem]">POPULAR FOODS IN INDIA</p>
                 <p className="text-md pt-[1rem]">Butter chicken, Chicken Roll Burger, Fried Chicken, Pizza, Sandavich, Egg Grill</p>
             </div>
       </div>

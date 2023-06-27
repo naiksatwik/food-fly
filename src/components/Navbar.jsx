@@ -4,6 +4,7 @@ import {
   AiOutlineClose,
   AiOutlineShoppingCart,
 } from "react-icons/ai";
+
 import { FaUserCheck, FaUserPlus } from "react-icons/fa";
 import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
@@ -18,12 +19,13 @@ const Navbar = () => {
     localStorage.clear();
     location.reload();
   };
+
   return (
     <div className="max-w-[1240px] mx-auto px-4 py-4 sticky top-0 bg-white z-40">
       <div className="w-full px-4 flex justify-between text items-center relative">
         <div className="flex pr-3 items-center">
           <Link to="/home">
-            <img src={logo} alt="" className="w-[7rem] " />
+            <img src={logo}  alt="" className="w-[7rem] " />
           </Link>
         </div>
         <div className="hidden md:block">
@@ -56,6 +58,7 @@ const Navbar = () => {
                 Login
               </button>
             ) : (
+              
               <button
                 className=" text-black font-medium px-5 py-2 shadow-md rounded-full space-x-4 "
                 onClick={() => {

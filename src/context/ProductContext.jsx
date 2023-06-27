@@ -6,13 +6,13 @@ const ProductContext = ({children}) => {
 
     const[food,setFoods]=useState([]);
     const[orders,setOrders]=useState([]);
+
     useEffect(() => {
       const  getProduct= async()=>{
         return await axios.get('http://localhost:5000/api/products').then((res)=>{
          setFoods(res.data.data)
         })
-      }
-
+    }
       getProduct();
 
     }, [])
@@ -27,7 +27,9 @@ useEffect(() => {
 
 }, [])
 
-    return   <ProductCon.Provider value={{food,orders}} >{children}</ProductCon.Provider>
+    return   <ProductCon.Provider value={{food,orders}} >
+    {children}
+    </ProductCon.Provider>
 }
 
 
@@ -35,4 +37,6 @@ useEffect(() => {
 const useProductContext=()=>{
     return useContext(ProductCon)
 }
+
+
 export { ProductContext,useProductContext}

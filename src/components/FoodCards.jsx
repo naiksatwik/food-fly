@@ -13,7 +13,7 @@ const FoodCards = (props) => {
         className="  w-full  h-[8rem] object-cover  rounded-tl-lg rounded-tr-lg"
       />
       {
-       (ut == "User" || ut == null)?
+       (ut == "User"|| ut =='user' || ut == null)?
        <div className="flex py-2 px-3 justify-between">
        <div className="w-1/2">
          <p className="text-[12px] text-gray-500 font-medium">{props.name}</p>

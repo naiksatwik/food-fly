@@ -22,6 +22,7 @@ const CartProvider=({children})=>{
     }
     const [state, dispatch] = useReducer(CartReducer, initialState);
     
+
     const removeProduct=(id)=>{
         dispatch({type:"REMOVE_ITEM",payload:id})
     }

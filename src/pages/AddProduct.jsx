@@ -106,6 +106,7 @@ const AddProduct = () => {
       type="submit"
       className="bg-black text-white px-6 py-2 rounded-full mt-4"
       onClick={() => {
+        
         run();
       }}
     />
